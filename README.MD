@@ -1,0 +1,1 @@
+Jogo simples com funções de sorteios para gerar numeros aleatórios e contas sortidas. O objetivo do jogador é fazer o maior número de contas certas em sequências.
