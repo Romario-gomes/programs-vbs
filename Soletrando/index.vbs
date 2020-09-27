@@ -20,20 +20,20 @@ end sub
 sub sortear_palavra()
     randomize(second(time))
     sorteio = int(rnd*5)+1
-end sub
 
-sub verificar_palavra()
-    'Do While 
-        for n=1 to 5 step 1 
+    for n=1 to 5 step 1 
 			if palavras(sorteio) <> arrays(n) AND arrays(n) = empty then
                 arrays(n) = palavras(sorteio)
             else 
-                call sortear_palavra
+            
+                    randomize(second(time))
+                    sorteio = int(rnd*5)+1
             end if   
-            msgbox(arrays(n))
-	    next
-    'Loop
+	next
+
 end sub
+
+
 
 sub nivel_um()
     palavras(1)= "Manga"
@@ -57,7 +57,6 @@ end sub
 sub iniciar_jogo()
     call nivel_um
     call sortear_palavra
-    call verificar_palavra
 
     msgbox("Bem vindo "& nome &" ao jogo SOLETRANDO: Nivel 1")
 
