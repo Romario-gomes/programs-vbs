@@ -1,6 +1,7 @@
 dim palavras(20), palavra_sorteio,sorteio,nome, resp,pontos,nivel,palavra
 dim audio, resp_sorteio,cont
 dim nvl1(5), nvl2(5), nvl3(5), nvl4(5)
+dim cont_pular, cont_ouvir
 
 cont = 0
 
@@ -74,7 +75,9 @@ sub sortear_palavra()
     loop while resp_sorteio = false
 end sub
 
-
+sub falar_palavra()
+        audio.speak(palavra_sorteio)
+end sub
 
 
 
@@ -92,12 +95,21 @@ sub iniciar_jogo()
     end if 
 
     do 
-    
-        audio.speak(palavra_sorteio)
+        call falar_palavra
         resp = msgbox("Repetir?",vbYesNo,"ATENCAO")
+        if resp = vbYes then
+            call falar_palavra
+        end if
         
-        palavra=Cstr(inputbox("Digite o a palavra: ","AVISO"))
+        palavra=Cstr(inputbox("Digite o a palavra: "+vbnewline &_
+                              "[P]ular Palavra"+vbnewline &_
+                              "[O]uvir Novamente","AVISO"))
+        if palavra = "P" and cont_pular > 0 then 
+            cont_pular = cont_pular + 1
+            call sortear_palavra
 
+        end if 
+    
         if palavra = palavra_sorteio then
             msgbox("Voce acertou!")
             cont = cont + 1
@@ -109,8 +121,7 @@ sub iniciar_jogo()
         else
             msgbox("Voce errou!")
         end if    
-    loop while resp = vbYes
-    
+    loop while palavra = palavra_sorteio
 end sub
 
 
